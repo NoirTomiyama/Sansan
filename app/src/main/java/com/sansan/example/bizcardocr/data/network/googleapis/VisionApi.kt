@@ -5,12 +5,14 @@ import com.sansan.example.bizcardocr.domain.entity.googleapis.vision.ImagesReque
 import com.sansan.example.bizcardocr.domain.entity.googleapis.vision.ImagesResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface VisionApi {
     // TODO: 課題2 (正しいURLを指定してください)
-    @POST("")
+    @Headers("Accept-Language: ja")
+    @POST("/v1/images:annotate?")
     fun images(
             @Body request: ImagesRequest,
             @Query("key") key: String = BuildConfig.VISION_API_KEY

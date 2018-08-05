@@ -13,16 +13,45 @@ data class ImagesRequest(
 ) {
     companion object {
         // TODO: 課題2 (要求パラメータに合わせて引数を修正してください)
-        fun createSingleRequest(): ImagesRequest{
-            val requests: List<AnnotateImageRequest> = listOf()
+        fun createSingleRequest(image: Image, features: Feature,imageContext: ImageContext): ImagesRequest{
+
+            val request = AnnotateImageRequest(image,features,imageContext)
+
+            val requests: List<AnnotateImageRequest> = listOf(request)
+
+//            val annotateImageRequest = AnnotateImageRequest(
+//                    Image("a", ImageSource("a","a")),
+//                    Feature("DOCUMENT_TEXT_DETECTION",10,"a"),
+//                    ImageContext()
+//            )
+
             return ImagesRequest(requests)
         }
     }
 }
 
 data class AnnotateImageRequest(
+        val image: Image ,
+        val features: Feature ,
         val imageContext: ImageContext
 )
+
+data class Image(
+        val content : String
+//        val source : ImageSource
+)
+
+data class ImageSource(
+        val gcsImageUri : String ,
+        val imageUri : String
+)
+
+data class Feature(
+        val type : String,
+        val maxResults : Int
+//        val model : String
+)
+
 
 data class ImageContext(
         val languageHints: List<String>
@@ -32,3 +61,6 @@ enum class LanguageHint(val language: String) {
     JAPANESE("ja"),
     ENGLISH("en")
 }
+
+
+

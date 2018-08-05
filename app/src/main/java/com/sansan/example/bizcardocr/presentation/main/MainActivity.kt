@@ -70,6 +70,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 
+        // TODO 許可したあと，カメラが起動できるように
+
         if(requestCode == REQUEST_CODE_PERMISSION) {
             // requestPermissionsで設定した順番で結果が格納されています。
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
